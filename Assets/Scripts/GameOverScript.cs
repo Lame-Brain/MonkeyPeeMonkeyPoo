@@ -29,6 +29,7 @@ public class GameOverScript : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && _ready)
         {
+            if (!SoundManager.SFX.isPlaying) SoundManager.SFX.PlayOneShot(SoundManager.SOUND.beep);
             UnityEngine.SceneManagement.SceneManager.LoadScene("IntroScreen");
         }
     }

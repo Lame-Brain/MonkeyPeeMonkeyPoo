@@ -19,6 +19,7 @@ public class Bucket_Controller : MonoBehaviour
             {
                 GameManager.GAME.Pickup_Bucket.SetActive(false);
                 GameManager.GAME.Player.GetComponent<PlayerScript>().HasBucketChange();
+                if (!SoundManager.SFX.isPlaying) SoundManager.SFX.PlayOneShot(SoundManager.SOUND.grab);
             }
             if (_mode == "Dropoff_Location")
             {
@@ -30,7 +31,7 @@ public class Bucket_Controller : MonoBehaviour
                     GameManager.GAME.BucketSamples = 0;
                     GameManager.GAME.DropOff_Bucket.SetActive(true);
                     StartCoroutine(CountUpSamples());
-
+                    if (!SoundManager.SFX.isPlaying) SoundManager.SFX.PlayOneShot(SoundManager.SOUND.grab);
                 }
             }
         }
@@ -39,9 +40,9 @@ public class Bucket_Controller : MonoBehaviour
             if (collision.tag == "Urine")
             {
                 if (GameManager.GAME.BucketSamples < 10) GameManager.GAME.BucketSamples++;
-                if (GameManager.GAME.BucketSamples > 5) transform.GetComponent<Animator>().SetBool("Full", true);
+                if (GameManager.GAME.BucketSamples > 0) transform.GetComponent<Animator>().SetBool("Full", true);
                 if (GameManager.GAME.BucketSamples == 10) GameManager.GAME.PopMessage("Bucket Full");
-
+                if (!SoundManager.SFX.isPlaying) SoundManager.SFX.PlayOneShot(SoundManager.SOUND.get);
                 Destroy(collision.gameObject);
             }
             if (collision.tag == "Feces")
@@ -50,6 +51,7 @@ public class Bucket_Controller : MonoBehaviour
                 GameManager.GAME.Player.GetComponent<PlayerScript>().HasBucketChange();
                 Destroy(collision.gameObject);
                 GameManager.GAME.PopMessage("BUCKET CONTAMINATED!");
+                if (!SoundManager.SFX.isPlaying) SoundManager.SFX.PlayOneShot(SoundManager.SOUND.badGet);
             }
         }
     }

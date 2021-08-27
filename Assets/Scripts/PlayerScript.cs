@@ -67,6 +67,7 @@ public class PlayerScript : MonoBehaviour
             }
             if (onGround && Input.GetButtonDown("Jump"))
             {
+                if (!SoundManager.SFX.isPlaying) SoundManager.SFX.PlayOneShot(SoundManager.SOUND.jump);
                 transform.Translate(Vector2.up * moveSpeed * Time.deltaTime);
                 onGround = false;
                 isFalling = false;
@@ -93,7 +94,7 @@ public class PlayerScript : MonoBehaviour
             PlayerHasBucket.transform.GetChild(0).GetComponent<Animator>().SetBool("Full", false);
             isHurt = PlayerHasBucket.GetComponent<Animator>().GetBool("Hurt");
         }
-        hasBucket = !hasBucket;
+        hasBucket = !hasBucket;        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -101,6 +102,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (!isHurt)
             {
+                Destroy(collision.gameObject);
                 GameManager.GAME.Health -= 10;
                 transform.GetComponentInChildren<Animator>().SetBool("Hurt", true);
                 isHurt = true;
@@ -109,6 +111,8 @@ public class PlayerScript : MonoBehaviour
                 {
                     UnityEngine.SceneManagement.SceneManager.LoadScene("EndScreen");
                 }
+                if(!SoundManager.SFX.isPlaying) SoundManager.SFX.PlayOneShot(SoundManager.SOUND.hurt);
+                Camera.main.GetComponent<Camera_Follows_Player>().ScreenShake(0.05f);
             }
         }
     }

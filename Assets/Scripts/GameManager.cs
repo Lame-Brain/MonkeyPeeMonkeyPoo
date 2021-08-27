@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager GAME;
-    public GameObject Pickup_Bucket, DropOff_Bucket, Player, MonkeyRoot, UI, MessagePrefab;
+    public GameObject Pickup_Bucket, DropOff_Bucket, Player, MonkeyRoot, UI, MessagePrefab, Tutorial;
     public GameObject[] Monkeys;
     public TMPro.TextMeshProUGUI SamplesCollected_GUI, Health_GUI, BucketNumSamples_GUI, Timer_GUI;
     public int Points, Health, BucketSamples;
@@ -27,6 +27,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _paused = false;
+        if (SoundManager.SOUND.First_Time_Through)
+        {
+            Tutorial.SetActive(true);
+            SoundManager.SOUND.First_Time_Through = false;
+            _paused = true;
+        }        
         StartCoroutine(TimerCountsDown());
         for (int _i = 0; _i < (Monkeys.Length * 3); _i++)
         {
@@ -62,7 +68,16 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         _paused = !_paused;
-        if (_paused) StartCoroutine(TimerCountsDown());
+        if (_paused)
+        {
+            Tutorial.SetActive(true);
+            //StartCoroutine(TimerCountsDown());
+        }
+        if (!_paused)
+        {
+            Tutorial.SetActive(false);
+            StartCoroutine(TimerCountsDown());
+        }
     }
 
     public bool IsGamePaused() { return _paused; }
@@ -71,11 +86,11 @@ public class GameManager : MonoBehaviour
     {
         _message = Instantiate(MessagePrefab, UI.transform);
         _message.GetComponent<TMPro.TextMeshProUGUI>().text = text;
-        StartCoroutine(KillMessage(Message_Length));
+        StartCoroutine(KillMessage(_message));
     }
-    IEnumerator KillMessage(float wait)
+    IEnumerator KillMessage(GameObject message)
     {
-        yield return new WaitForSeconds(wait);
-        if (_message != null) Destroy(_message);
+        yield return new WaitForSeconds(Message_Length);
+        if (message != null) Destroy(message);
     }
 }

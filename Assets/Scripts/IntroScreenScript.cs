@@ -7,6 +7,11 @@ public class IntroScreenScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Jump")) UnityEngine.SceneManagement.SceneManager.LoadScene("MainScene");
+        
+        if (Input.GetButtonDown("Jump"))
+        {
+            if (!SoundManager.SFX.isPlaying) SoundManager.SFX.PlayOneShot(SoundManager.SOUND.beep);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("MainScene");
+        }
     }
 }
