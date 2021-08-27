@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
+        if (!SoundManager.SFX.isPlaying) SoundManager.SFX.PlayOneShot(SoundManager.SOUND.beep);
         _paused = !_paused;
         if (_paused)
         {
@@ -93,4 +94,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(Message_Length);
         if (message != null) Destroy(message);
     }
+
+    public void QuitGame() { UnityEngine.SceneManagement.SceneManager.LoadScene("IntroScreen"); }
 }

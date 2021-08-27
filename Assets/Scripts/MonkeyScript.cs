@@ -32,7 +32,7 @@ public class MonkeyScript : MonoBehaviour
 
     void Move()
     {
-        transform.Translate((Vector2.left * moveSpeed) * Time.deltaTime);
+        if (!GameManager.GAME.IsGamePaused()) transform.Translate((Vector2.left * moveSpeed) * Time.deltaTime);
 
         if (transform.position.x < -5.35f) transform.eulerAngles = new Vector2(0, 180);
         if (transform.position.x > 23.90f) transform.eulerAngles = new Vector2(0, 0);

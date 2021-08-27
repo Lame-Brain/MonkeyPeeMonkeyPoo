@@ -74,6 +74,7 @@ public class PlayerScript : MonoBehaviour
                 isJumping = true;
             }
         }
+        if (Input.GetButtonUp("Cancel")) GameManager.GAME.PauseGame();
     }
 
     public void HasBucketChange()
