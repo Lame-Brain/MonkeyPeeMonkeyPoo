@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 5546671543968653177, guid: 3344209842391754da2a0c333503e7b8, type: 3}
+  m_Sprite: {fileID: 5546671543968653177, guid: 9dbe2fd694089764ea83293ef754fc41, type: 3}
   m_Color: {r: 0.764151, g: 0.56287885, b: 0.46497867, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -94,7 +94,7 @@ Animator:
   m_GameObject: {fileID: 8567175953180410046}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b605d1f9090fb0543a50629f15c757ef, type: 2}
+  m_Controller: {fileID: 9100000, guid: 45c23fcf14e0a6d4caa9375aad2e810f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -112,11 +112,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8567175953180410046}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 153653757525f2d4ea4829251995df5b, type: 3}
+  m_Script: {fileID: 11500000, guid: bf009b3bd313b73478f5e26cde27b652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0
   waveHeight: 0
   fireDelay: 0
-  fecesPrefab: {fileID: 5009466289359833707, guid: d7ffb7e8260b4534eb4838a014fb710b, type: 3}
-  urinePrefab: {fileID: 394000674566601415, guid: 3fd4e68c108bc30449f69e74459f2544, type: 3}
+  poopChance: 0
+  fecesPrefab: {fileID: 5009466289359833707, guid: 556b3cdbf53e9494db46c3f9b6dbb336, type: 3}
+  urinePrefab: {fileID: 394000674566601415, guid: e79bc6e6a4fbbdc48881e6adb4eeb046, type: 3}
