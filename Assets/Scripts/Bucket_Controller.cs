@@ -40,7 +40,7 @@ public class Bucket_Controller : MonoBehaviour
             if (collision.tag == "Urine")
             {
                 if (GameManager.GAME.BucketSamples < 10) GameManager.GAME.BucketSamples++;
-                if (GameManager.GAME.BucketSamples > 0) transform.GetComponent<Animator>().SetBool("Full", true);
+                if (GameManager.GAME.BucketSamples > 5) transform.GetComponent<Animator>().SetBool("Full", true);
                 if (GameManager.GAME.BucketSamples == 10) GameManager.GAME.PopMessage("Bucket Full");
                 if (!SoundManager.SFX.isPlaying) SoundManager.SFX.PlayOneShot(SoundManager.SOUND.get);
                 Destroy(collision.gameObject);
